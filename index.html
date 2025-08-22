@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Reprise de Données ELAP Finance - M4/M57</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5282;
+            border-bottom: 3px solid #2c5282;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #4a5568;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+            margin-top: 25px;
+        }
+        h4 {
+            color: #2d3748;
+            margin-top: 20px;
+        }
+        .toc {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .toc h3 {
+            margin-top: 0;
+            border-left: none;
+            color: #2c5282;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        .toc a {
+            text-decoration: none;
+            color: #4299e1;
+            font-weight: 500;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .alert {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid;
+        }
+        .alert-warning {
+            background-color: #fef5e7;
+            border-left-color: #f6ad55;
+            color: #744210;
+        }
+        .alert-danger {
+            background-color: #fed7d7;
+            border-left-color: #f56565;
+            color: #742a2a;
+        }
+        .alert-info {
+            background-color: #ebf8ff;
+            border-left-color: #4299e1;
+            color: #2a4365;
+        }
+        .alert-success {
+            background-color: #f0fff4;
+            border-left-color: #48bb78;
+            color: #22543d;
+        }
+        .schema-box {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .schema-step {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 200px;
+        }
+        .schema-arrow {
+            font-size: 24px;
+            color: #667eea;
+            margin: 0 10px;
+        }
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .highlight {
+            background: #fef5e7;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .badge {
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .flow-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .flow-item {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+        .flow-arrow {
+            font-size: 30px;
+            color: #667eea;
+            margin: 0 10px;
+        }
+        .key-point {
+            background: #e6fffa;
+            border-left: 5px solid #38b2ac;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Guide Reprise de Données ELAP Finance</h1>
+        <p style="text-align: center; font-size: 1.1em; color: #4a5568; margin-bottom: 30px;">
+            <strong>📋 Objectif :</strong> Accompagner les chefs de projet dans la mise en œuvre des reprises de données lors des migrations vers ELAP Finance, en respectant le cadre GBCP et les nomenclatures M4/M57.
+        </p>
+
+        <div class="toc">
+            <h3>📚 Table des Matières</h3>
+            <ul>
+                <li>🏛️ <a href="#piliers">1. Piliers Fondamentaux</a></li>
+                <li>🔄 <a href="#strategies">2. Stratégies de Reprise</a></li>
+                <li>🔧 <a href="#exercice-reprise">3. L'Exercice de Reprise</a></li>
+                <li>📅 <a href="#calendrier">4. Calendrier et Organisation</a></li>
+                <li>🔢 <a href="#calculs">5. Calculs et Exemples Pratiques</a></li>
+                <li>🦸 <a href="#batman">6. BATMAN - Contrôle Qualité</a></li>
+                <li>📊 <a href="#bilan-entree">7. Bilan d'Entrée</a></li>
+                <li>💰 <a href="#recettes">8. Reprise des Recettes</a></li>
+                <li>🔧 <a href="#formats-outils">9. Formats et Outils de Reprise</a></li>
+                <li>🧹 <a href="#bonnes-pratiques">10. Bonnes Pratiques d'Épuration</a></li>
+                <li>🔍 <a href="#controles">11. Plan de Contrôles</a></li>
+                <li>🚨 <a href="#anomalies">12. Gestion des Anomalies</a></li>
+                <li>📖 <a href="#lexique">13. Lexique et Abréviations</a></li>
+            </ul>
+        </div>
+
+        <h2 id="piliers">🏛️ 1. Piliers Fondamentaux</h2>
+        
+        <p>La reprise de données dans ELAP Finance repose sur quatre piliers essentiels qui garantissent le succès de la migration :</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🏛️ Pilier</th>
+                    <th>📝 Description</th>
+                    <th>🎯 Objectif</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Continuité</strong></td>
+                    <td>Maintenir la traçabilité des engagements non soldés</td>
+                    <td>Assurer le suivi budgétaire</td>
+                </tr>
+                <tr>
+                    <td><strong>Conformité</strong></td>
+                    <td>Respecter le cadre GBCP et nomenclatures M4/M57</td>
+                    <td>Garantir la réglementation</td>
+                </tr>
+                <tr>
+                    <td><strong>Optimisation</strong></td>
+                    <td>Épurer au maximum avant migration</td>
+                    <td>Réduire les volumes</td>
+                </tr>
+                <tr>
+                    <td><strong>Intégrité</strong></td>
+                    <td>Préserver équilibres et lettrages</td>
+                    <td>Maintenir la cohérence</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="strategies">🔄 2. Stratégies de Reprise</h2>
+
+        <h3>🎯 Différenciation OCB / OHCB</h3>
+        
+        <p>Le choix de la stratégie de reprise dépend fondamentalement du type d'établissement :</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🏢 Type</th>
+                    <th>📊 Consommation</th>
+                    <th>🔄 Reprise nécessaire</th>
+                    <th>🎯 Objectif</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>OCB</strong></td>
+                    <td>AE + CP</td>
+                    <td>✅ Objets de gestion obligatoires</td>
+                    <td>DP futures = consommation CP uniquement</td>
+                </tr>
+                <tr>
+                    <td><strong>OHCB</strong></td>
+                    <td>Charges (+ AE parfois)</td>
+                    <td>⚡ Cas simples = BE suffit</td>
+                    <td>Comptabilisation correcte des charges</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>📊 Schéma Directeur - Reprise de Données ELAP</h3>
+        
+        <div class="schema-box">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="flex: 1; text-align: center;">
+                    <h4 style="color: #c53030;">🏛️ Ancienne Application</h4>
+                    <div style="background: #fed7d7; padding: 15px; border-radius: 8px; margin: 10px;">
+                        <strong>2025</strong><br>
+                        • Crédits et Engagements comptables<br>						
+                        • Dépenses engagées non dénouées<br>
+                        • Services faits non dénoués (charges à payer)<br>
+                        • Mandats non payés<br>
+                        • Opérations pluriannuelles<br>
+                        • Titres non soldés et produits à recevoir<br>
+                        • Encaissements non rattachés à un titre<br>
+                        • Plans de facturation clients<br>
+                        • Comptabilité générale (Balance de sortie...)<br>
+                        • Comptabilité auxiliaire Tiers / Immos / Stock	<br>					
+                    </div>
+                </div>
+                
+                <div style="flex: 0 0 100px; text-align: center;">
+                    <div style="background: #4299e1; color: white; padding: 20px; border-radius: 8px; font-weight: bold; font-size: 18px;">
+                        BASCULE<br>2026
+                    </div>
+                </div>
+                
+                <div style="flex: 1; text-align: center;">
+                    <h4 style="color: #38a169;">🚀 ELAP Finance</h4>
+                    <div style="background: #f0fff4; padding: 15px; border-radius: 8px; margin: 10px;">
+                        <strong>2026</strong><br>
+                        • AE/CP<br>
+                        • EJ repris pour reste à payer<br>
+                        • SF sur EJ repris<br>
+                        • Demandes de paiement<br>
+                        • Opérations pluriannuelles<br>
+                        • Titres repris pour reste à recouvrer<br>
+                        • Encaissements non rapprochés (titres à émettre)<br>
+                        • Plans de facturation clients<br>
+                        • Comptabilité générale (Balance d'entrée)<br>
+                        • Comptabilité auxiliaire (nouveaux référentiels)<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-info">
+            <strong>⚡ Principe de choix :</strong> La stratégie dépend du type d'établissement, du volume de données, et du niveau de suivi souhaité par l'établissement.
+        </div>
+
+        <h3>🎯 Stratégie 1 : Reprise Minimale (BE uniquement)</h3>
+        
+        <div class="key-point">
+            <p><strong>🎯 Périmètre :</strong> Petits/moyens établissements OHCB</p>
+            <p><strong>📋 Principe :</strong> Seul le Bilan d'Entrée est repris</p>
+            <p><strong>⚡ Avantages :</strong> Simple et rapide, charge de travail minimale</p>
+            <p><strong>⚠️ Limites :</strong> Perte du suivi détaillé, lettrage manuel requis</p>
+        </div>
+
+        <h4>📊 Schémas Comptables - Stratégie 1</h4>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Situation</th>
+                    <th>📊 Exercice précédent</th>
+                    <th>📊 Exercice de démarrage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>EJ engagé - Pas de SF</strong></td>
+                    <td>Pas d'écriture</td>
+                    <td>
+                        <strong>DP directe :</strong><br>
+                        D/ 6x &nbsp;&nbsp;&nbsp; C/ 4011<br>
+                        D/ 4011 &nbsp; C/ 515
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>EJ engagé - SF certifié</strong></td>
+                    <td>
+                        D/ 6x &nbsp;&nbsp;&nbsp; C/ 408<br>
+                        <em>(BE importé)</em><br>
+                        D/ xxx &nbsp;&nbsp; C/ 408
+                    </td>
+                    <td>
+                        <strong>DV avec lettrage manuel :</strong><br>
+                        D/ 4x &nbsp;&nbsp;&nbsp; C/ 515
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>CAPAC comptabilisé</strong></td>
+                    <td>
+                        D/ 6x &nbsp;&nbsp;&nbsp; C/ 408<br>
+                        <em>(BE importé)</em><br>
+                        D/ xxx &nbsp;&nbsp; C/ 408
+                    </td>
+                    <td>
+                        <strong>Extourne 1er janvier :</strong><br>
+                        D/ 408 &nbsp;&nbsp; C/ 6x<br>
+                        <strong>Puis DP directe :</strong><br>
+                        D/ 6x &nbsp;&nbsp;&nbsp; C/ 4011<br>
+                        D/ 4011 &nbsp; C/ 515
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🎖️ Stratégie 2 : Reprise du Reste à Liquider (Recommandé)</h3>
+        
+        <div class="alert alert-success">
+            <p><strong>🎯 Périmètre :</strong> Établissements OCB et OHCB moyens/gros</p>
+            <p><strong>📋 Principe :</strong> Reprise des objets pour leur reste à liquider uniquement</p>
+            <p><strong>⚡ Avantages :</strong> Évite la consommation d'AE lors des liquidations futures, suivi budgétaire optimal</p>
+            <p><strong>🎖️ Recommandation :</strong> Solution optimale pour la plupart des cas</p>
+        </div>
+
+        <div class="alert alert-warning">
+            <strong>⚠️ Ne pas reprendre :</strong> Les DP, les pièces liquidées, les pièces de corrections
+        </div>
+
+        <h4>📊 Schémas Comptables - Stratégie 2</h4>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Situation</th>
+                    <th>📊 Exercice de reprise</th>
+                    <th>📊 Exercice de démarrage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>EJ engagé sans SF</strong></td>
+                    <td><em>EJ repris pour reste à liquider</em></td>
+                    <td>
+                        <strong>SF puis DP :</strong><br>
+                        D/ 6x &nbsp;&nbsp;&nbsp; C/ 408<br>
+                        D/ 408 &nbsp;&nbsp; C/ 4011<br>
+                        D/ 4011 &nbsp; C/ 515
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>EJ engagé + SF certifié</strong></td>
+                    <td>
+                        <em>EJ et SF repris</em><br>
+                        D/ 6x &nbsp;&nbsp;&nbsp; C/ 408<br>
+                        <em>(BE importé - lettrage automatique)</em><br>
+                        D/ xxx &nbsp;&nbsp; C/ 408
+                    </td>
+                    <td>
+                        <strong>DP directe sur SF :</strong><br>
+                        D/ 408 &nbsp;&nbsp; C/ 4011<br>
+                        D/ 4011 &nbsp; C/ 515
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>CAPAC - pas de reprise</strong></td>
+                    <td><em>Pas de saisie sur exercice de reprise</em></td>
+                    <td>
+                        <strong>Comme Stratégie 1 :</strong><br>
+                        D/ 408 &nbsp;&nbsp; C/ 6x (extourne)<br>
+                        D/ 6x &nbsp;&nbsp;&nbsp; C/ 4011<br>
+                        D/ 4011 &nbsp; C/ 515
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🚫 Stratégie 3 : Reprise de l'Antériorité Complète (Non Recommandée)</h3>
+        
+        <div class="alert alert-danger">
+            <p><strong>🎯 Périmètre :</strong> Grands établissements souhaitant l'historique complet</p>
+            <p><strong>📋 Principe :</strong> Montants initiaux + DP de cumul pour le déjà liquidé</p>
+            <p><strong>⚠️ Complexité :</strong> Charge de travail très importante</p>
+            <p><strong>💰 Coût :</strong> Élevé en temps et ressources humaines</p>
+            <p><strong>📊 Exemple de complexité :</strong> Grand établissement = 15 000 DP de cumul reprises !</p>
+        </div>
+
+        <div class="alert alert-danger">
+            <strong>🚨 ATTENTION :</strong> Cette stratégie n'est <strong>PAS RECOMMANDÉE</strong>. Si le client l'exige, il faut <strong>alerter l'équipe projet</strong> sur les risques et la complexité. Dans tous les cas, la reprise des informations sera incomplète et il faudra consulter l'ancien outil pour certaines données.
+        </div>
+
+        <h2 id="exercice-reprise">🔧 3. L'Exercice de Reprise</h2>
+        
+        <div class="key-point">
+            <p><strong>📋 Définition :</strong> Exercice technique créé spécifiquement pour la reprise, avec des caractéristiques particulières permettant une saisie flexible.</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Caractéristique</th>
+                    <th>📝 Description</th>
+                    <th>🎯 Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🚫 Pas de budget</td>
+                    <td>Aucune autorisation budgétaire requise</td>
+                    <td>Liberté de saisie</td>
+                </tr>
+                <tr>
+                    <td>🚫 Pas de contrôles</td>
+                    <td>Saisies non soumises aux contrôles habituels</td>
+                    <td>Flexibilité maximale</td>
+                </tr>
+                <tr>
+                    <td>✏️ Numérotation manuelle</td>
+                    <td>Pièces numérotées manuellement</td>
+                    <td>Contrôle total</td>
+                </tr>
+                <tr>
+                    <td>🔄 Workflow simplifié</td>
+                    <td>Circuits de validation allégés</td>
+                    <td>Rapidité d'exécution</td>
+                </tr>
+                <tr>
+                    <td>🔒 Non perméable</td>
+                    <td>Opérations contraintes à l'exercice</td>
+                    <td>Étanchéité budgétaire</td>
+                </tr>
+                <tr>
+                    <td>📊 Pas de CF</td>
+                    <td>Ne génèrera pas de compte financier</td>
+                    <td>Usage technique seul</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🔧 Création de l'Exercice de Reprise</h3>
+        
+        <div class="code-block">
+📍 Navigation : ListIdentifiant → Création Exercice
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🔧 Paramètre</th>
+                    <th>📝 Description</th>
+                    <th>💡 Exemple</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Exercice source</td>
+                    <td>Exercice de démarrage</td>
+                    <td>2026</td>
+                </tr>
+                <tr>
+                    <td>Code exercice cible</td>
+                    <td>Exercice de reprise</td>
+                    <td>2025</td>
+                </tr>
+                <tr>
+                    <td>☑️ Exercice de reprise</td>
+                    <td>Case à cocher obligatoirement</td>
+                    <td>✅ Activé</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="calendrier">📅 4. Calendrier et Organisation</h2>
+        
+        <div class="alert alert-info">
+            <p><strong>🎯 Prérequis fondamental :</strong> Les référentiels constituent la base de toute reprise et doivent être traités en premier.</p>
+            <p><strong>⏰ Principe :</strong> Planification rigoureuse avec respect des dépendances entre les différentes étapes de reprise.</p>
+        </div>
+
+        <h3>📋 Ordre de Reprise des Référentiels</h3>
+        
+        <div class="flow-diagram">
+            <div class="flow-item">
+                <strong>🗂️ Référentiels de base</strong><br>
+                • Opérations<br>
+                • Analytique<br>
+                • Plan comptable<br>
+                • Tiers (contrôle BATMAN obligatoire)
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">
+                <strong>🏢 Objets de gestion</strong><br>
+                • Accords-cadres<br>
+                • Marchés<br>
+                • EJ/SF<br>
+                • Titres/DRV
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">
+                <strong>📊 Bilan d'entrée</strong><br>
+                • En dernier<br>
+                • Non bloquant<br>
+                • Lettrage automatique
+            </div>
+        </div>
+
+        <h3>📅 Planning Type de Reprise</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>🗓️ Étape</th>
+                    <th>📋 Élément</th>
+                    <th>👥 Responsable</th>
+                    <th>📅 Préparation</th>
+                    <th>📅 Intégration</th>
+                    <th>⚠️ Commentaires</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>🗂️ Référentiels</td>
+                    <td>Client/ELAP</td>
+                    <td>13 déc</td>
+                    <td>31 déc</td>
+                    <td>Analytiques, Opérations, Plan comptable</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>👥 Tiers</td>
+                    <td>Client/ELAP</td>
+                    <td>31 déc</td>
+                    <td>03 janv</td>
+                    <td>⚠️ Contrôle BATMAN obligatoire</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>🔗 Lien Chorus</td>
+                    <td>Client/ELAP</td>
+                    <td>30 déc</td>
+                    <td>30 déc</td>
+                    <td>Couper puis réouvrir après reprise</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>🏢 Accords-cadres</td>
+                    <td>Client/ELAP</td>
+                    <td>10 janv</td>
+                    <td>31 janv</td>
+                    <td>Retraitement manuel des fichiers</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>🏗️ Marchés</td>
+                    <td>Client/ELAP</td>
+                    <td>10 janv</td>
+                    <td>24 janv</td>
+                    <td>📊 API tranches non disponible</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>⚖️ EJ</td>
+                    <td>Client/ELAP</td>
+                    <td>10 janv</td>
+                    <td>31 janv</td>
+                    <td>🔢 Volume important (ex: X EJ à reprendre)</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>✅ SF</td>
+                    <td>Client</td>
+                    <td>10 janv</td>
+                    <td>31 janv</td>
+                    <td>📝 ~X SF en saisie manuelle</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>🧾 DPA/Titres/DRV</td>
+                    <td>Client/ELAP</td>
+                    <td>10 janv</td>
+                    <td>31 janv</td>
+                    <td>~X DPA à saisir selon contexte</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>📊 Bilan d'entrée</td>
+                    <td>Client/ELAP</td>
+                    <td>31 janv</td>
+                    <td>28 févr</td>
+                    <td>🎯 En dernier - non bloquant pour démarrage</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🔄 Processus et Répartition des Responsabilités</h3>
+        
+        <div class="flow-diagram">
+            <div class="flow-item">
+                <strong>📁 Format "source"</strong><br>
+                Extraction/saisie données client<br>
+                (format dépendant du client)
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">
+                <strong>🔄 Format "pivot"</strong><br>
+                Transformation en format<br>
+                importable standard
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">
+                <strong>🦸 Contrôle qualité</strong><br>
+                Validation via outils<br>
+                (BATMAN, scripts)
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">
+                <strong>📥 Import</strong><br>
+                Intégration dans<br>
+                ELAP Finance
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">
+                <strong>✅ Tests/Recette</strong><br>
+                Validation avec<br>
+                le client
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>📋 Responsabilité</th>
+                    <th>👤 Client</th>
+                    <th>🔧 ELAP</th>
+                    <th>📝 Commentaire</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fourniture données</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                    <td>Format source selon spécifications</td>
+                </tr>
+                <tr>
+                    <td>Qualité données entrée</td>
+                    <td>✅</td>
+                    <td>🤝</td>
+                    <td>Responsabilité partagée avec accompagnement</td>
+                </tr>
+                <tr>
+                    <td>Transformation pivot</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>Scripts et outils ELAP</td>
+                </tr>
+                <tr>
+                    <td>Contrôle pré-import</td>
+                    <td>🤝</td>
+                    <td>✅</td>
+                    <td>BATMAN + validation client</td>
+                </tr>
+                <tr>
+                    <td>Import technique</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>APIs, Excel, saisie manuelle</td>
+                </tr>
+                <tr>
+                    <td>Recette fonctionnelle</td>
+                    <td>✅</td>
+                    <td>🤝</td>
+                    <td>Validation conjointe</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="calculs">🔢 5. Calculs et Exemples Pratiques</h2>
+        
+        <div class="key-point">
+            <p><strong>🎯 Situation type :</strong> Illustration avec un engagement de 1 000 € partiellement exécuté sur l'exercice N (2025)</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Type</th>
+                    <th>💰 Montant</th>
+                    <th>📝 Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🏗️ EJ</td>
+                    <td>1 000 €</td>
+                    <td>Engagement initial</td>
+                </tr>
+                <tr>
+                    <td>✅ SF</td>
+                    <td>500 €</td>
+                    <td>Service constaté</td>
+                </tr>
+                <tr>
+                    <td>💳 DP</td>
+                    <td>200 €</td>
+                    <td>Demande payée (porte sur SF)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>📊 Calculs de Reprise</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>📐 Calcul</th>
+                    <th>🔢 Formule</th>
+                    <th>💰 Résultat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Reste à certifier</strong></td>
+                    <td>EJ - SF</td>
+                    <td>1000 - 500 = <strong>500 €</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Reste à liquider</strong></td>
+                    <td>EJ - DP</td>
+                    <td>1000 - 200 = <strong>800 €</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-success">
+            <strong>🔑 Règle d'or :</strong> Le plus important est le <strong>reste à certifier</strong> ! C'est ce montant qui détermine les volumes de reprise.
+        </div>
+
+        <h3>📋 Cas d'Usage Pluriannuels</h3>
+
+        <h4>🔹 Cas 1 : Reste à Réaliser "Classique"</h4>
+        
+        <div class="schema-box">
+            <p><strong>🎯 Contexte :</strong> EJ validé en 2025, marchandise reçue et payée en 2026</p>
+            <p><strong>📊 Résultat :</strong> 2025 montant engagé = 0 | 2026 montant engagé = CP = 100€</p>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <div style="flex: 1; background: #fed7d7; padding: 15px; border-radius: 8px; margin: 0 10px;">
+                    <strong>2025 :</strong><br>
+                    • Engagement budget +100€<br>
+                    • OD budgétaire -100€ (restes à réaliser)
+                </div>
+                <div style="flex: 1; background: #f0fff4; padding: 15px; border-radius: 8px; margin: 0 10px;">
+                    <strong>2026 :</strong><br>
+                    • Extourne OD +100€<br>
+                    • SF → liquidation +100€ CP
+                </div>
+            </div>
+        </div>
+
+        <h4>🔹 Cas 2 : Reste à Réaliser en AP/AE</h4>
+        
+        <div class="schema-box">
+            <p><strong>🎯 Contexte :</strong> Gestion en autorisations de programme</p>
+            <p><strong>📊 Résultat :</strong> 2025 montant engagé = 100€ | 2026 montant engagé = 0, CP = 100€</p>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <div style="flex: 1; background: #fed7d7; padding: 15px; border-radius: 8px; margin: 0 10px;">
+                    <strong>2025 :</strong><br>
+                    • Consommation AE +100€<br>
+                    • (pas d'impact sur restes à réaliser)
+                </div>
+                <div style="flex: 1; background: #f0fff4; padding: 15px; border-radius: 8px; margin: 0 10px;">
+                    <strong>2026 :</strong><br>
+                    • SF → liquidation +100€ CP
+                </div>
+            </div>
+        </div>
+
+        <h4>🔹 Cas 3 : Rattachement</h4>
+        
+        <div class="schema-box">
+            <p><strong>🎯 Contexte :</strong> EJ + SF en 2025, facture reçue en 2026</p>
+            <p><strong>📊 Résultat :</strong> 2025 montant engagé = CP = 100€ | 2026 montant engagé = CP = 0</p>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <div style="flex: 1; background: #fed7d7; padding: 15px; border-radius: 8px; margin: 0 10px;">
+                    <strong>2025 :</strong><br>
+                    • Engagement +100€<br>
+                    • SF → mandat charge à payer +100€ CP
+                </div>
+                <div style="flex: 1; background: #f0fff4; padding: 15px; border-radius: 8px; margin: 0 10px;">
+                    <strong>2026 :</strong><br>
+                    • Annulation MCAP -100€<br>
+                    • Liquidation +100€ CP
+                </div>
+            </div>
+        </div>
+
+        <h2 id="batman">🦸 6. BATMAN - Contrôle Qualité des Données</h2>
+        
+        <div class="alert alert-info">
+            <p><strong>🎯 Objectif :</strong> BATMAN est l'outil de contrôle qualité indispensable pour valider les formats de données avant import dans ELAP Finance.</p>
+            <p><strong>🔗 Accès :</strong> <a href="https://elapcdp.streamlit.app/" target="_blank">https://elapcdp.streamlit.app/</a></p>
+            <p><strong>⚠️ Statut :</strong> Outil en cours de développement - nouvelles fonctionnalités ajoutées régulièrement</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🔧 Module</th>
+                    <th>📝 Description</th>
+                    <th>🎯 Usage</th>
+                    <th>📊 Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>👥 Validation Tiers</td>
+                    <td>Contrôle qualité données fournisseurs/clients</td>
+                    <td>Validation format obligatoire</td>
+                    <td>✅ Opérationnel</td>
+                </tr>
+                <tr>
+                    <td>⚖️ Validation EJ</td>
+                    <td>Contrôle qualité engagements juridiques</td>
+                    <td>Validation structure et cohérence</td>
+                    <td>🔄 En cours de développement</td>
+                </tr>
+                <tr>
+                    <td>🔄 Workflows</td>
+                    <td>Interface de sélection fonctionnalités</td>
+                    <td>Navigation et pilotage</td>
+                    <td>✅ Opérationnel</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🔍 Types de Contrôles BATMAN</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Type</th>
+                    <th>📝 Description</th>
+                    <th>💡 Exemple</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>📐 Format</td>
+                    <td>Types de données (AN, N, date)</td>
+                    <td>'GENEZADFINAZDFIEZ' > AN(4) ❌</td>
+                </tr>
+                <tr>
+                    <td>📏 Longueur</td>
+                    <td>Respect tailles maximales</td>
+                    <td>SIRET '34284296000037A' > 14 caractères ❌</td>
+                </tr>
+                <tr>
+                    <td>🔗 Cohérence</td>
+                    <td>Liens entre fichiers</td>
+                    <td>Code liaison ADRESSES ≠ GENERALITES ❌</td>
+                </tr>
+                <tr>
+                    <td>✅ Complétude</td>
+                    <td>Données obligatoires</td>
+                    <td>Titulaire, Domiciliation non renseignés ❌</td>
+                </tr>
+                <tr>
+                    <td>🔢 Numérique</td>
+                    <td>Format des valeurs</td>
+                    <td>'SA' au lieu de numérique N(2) ❌</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🔍 Contrôles Spécifiques aux Tiers</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>📋 Fichier</th>
+                    <th>🔍 Type de Contrôle</th>
+                    <th>📝 Description</th>
+                    <th>💡 Exemple d'Erreur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TIERS GENERALITES</td>
+                    <td>Format et longueur</td>
+                    <td>SIRET principal doit respecter AN(14)</td>
+                    <td>SIRETPRINC: '34284296000037A' dépasse 14 caractères</td>
+                </tr>
+                <tr>
+                    <td>TIERS GENERALITES</td>
+                    <td>Format numérique</td>
+                    <td>DGP DEPENSES doit être numérique N(2)</td>
+                    <td>DGP DEPENSES: 'SA' n'est pas numérique</td>
+                </tr>
+                <tr>
+                    <td>TIERS ADRESSES</td>
+                    <td>Cohérence référentielle</td>
+                    <td>Code liaison doit exister dans GENERALITES</td>
+                    <td>CODE LIAISON 'F-000198468' absent des GENERALITES</td>
+                </tr>
+                <tr>
+                    <td>TIERS COORDONNEES BANCAIRES</td>
+                    <td>Complétude</td>
+                    <td>Titulaire et domiciliation obligatoires</td>
+                    <td>TITULAIRE et DOMICILIATION non renseignés</td>
+                </tr>
+                <tr>
+                    <td>TIERS CONTACTS</td>
+                    <td>Données obligatoires</td>
+                    <td>Civilité et nom contact requis</td>
+                    <td>Civilité et Nom contact non renseignés</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-info">
+            <p><strong>📊 Rapport de contrôle :</strong> BATMAN génère un rapport détaillé au format : Fichier / Type / Ligne / Erreur détaillée</p>
+            <p><strong>🎯 Navigation intuitive :</strong> Menu principal → Sélection fonctionnalité → Upload fichier → Rapport automatique</p>
+        </div>
+
+        <h3>🚨 Contraintes Critiques BATMAN</h3>
+        
+        <div class="alert alert-warning">
+            <ul>
+                <li><strong>Format d'Import Obligatoire :</strong> Fichiers Excel uniquement, avec en-têtes spécifiques</li>
+                <li><strong>Contrôles Qualité Automatiques :</strong> Validation en temps réel des formats, longueurs et cohérences</li>
+                <li><strong>Règles de Cohérence Critiques :</strong> Liens entre fichiers obligatoires (ex: tiers/adresses)</li>
+                <li><strong>Données Obligatoires :</strong> Champs requis selon référentiel métier</li>
+            </ul>
+        </div>
+
+        <h2 id="bilan-entree">📊 7. Bilan d'Entrée</h2>
+        
+        <div class="key-point">
+            <p><strong>📋 Définition :</strong> Le Bilan d'Entrée permet de reprendre les soldes comptables de l'ancien système vers ELAP Finance, avec des caractéristiques spécifiques assurant la continuité comptable.</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Caractéristique</th>
+                    <th>📝 Description</th>
+                    <th>⚠️ Contrainte</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>📅 Exercice</td>
+                    <td>Import sur exercice de démarrage</td>
+                    <td>≠ exercice de reprise</td>
+                </tr>
+                <tr>
+                    <td>📏 Taille limite</td>
+                    <td>< 4 000 lignes (cas d'usage standard)</td>
+                    <td>Outil standard uniquement</td>
+                </tr>
+                <tr>
+                    <td>🔓 Indépendance</td>
+                    <td>N'empêche pas le démarrage</td>
+                    <td>Import possible en cours d'exercice</td>
+                </tr>
+                <tr>
+                    <td>🔗 Liaisons</td>
+                    <td>Lié aux pièces sources (exercice reprise)</td>
+                    <td>Lettrage automatique</td>
+                </tr>
+                <tr>
+                    <td>📄 Format</td>
+                    <td>Excel (.xls) OBLIGATOIRE</td>
+                    <td>Avec ligne d'en-tête impérative</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>📋 Structure du Fichier BE</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>🔤 Colonne</th>
+                    <th>🏷️ Champ</th>
+                    <th>✅/❌</th>
+                    <th>📝 Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A</td>
+                    <td>Compte</td>
+                    <td>✅ Obligatoire</td>
+                    <td>Nomenclature M9 ELAP</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>Nature auxiliaire</td>
+                    <td>❌ Facultatif</td>
+                    <td>C (Client) / F (Fournisseur)</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>Tiers</td>
+                    <td>❌ Facultatif</td>
+                    <td>Numéro tiers ELAP</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>Référence</td>
+                    <td>✅ Obligatoire</td>
+                    <td>Correspondance objets reprise</td>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td>Montant Débit</td>
+                    <td>📊 Un des deux</td>
+                    <td>0 si montant au crédit</td>
+                </tr>
+                <tr>
+                    <td>F</td>
+                    <td>Montant Crédit</td>
+                    <td>📊 Un des deux</td>
+                    <td>0 si montant au débit</td>
+                </tr>
+                <tr>
+                    <td>G</td>
+                    <td>Type Pièce Origine</td>
+                    <td>❌ Facultatif</td>
+                    <td>Mapping SF/TIT</td>
+                </tr>
+                <tr>
+                    <td>H</td>
+                    <td>N° Pièce Origine</td>
+                    <td>❌ Facultatif</td>
+                    <td>Correspondance SF/TIT</td>
+                </tr>
+                <tr>
+                    <td>I-M</td>
+                    <td>Ventilations</td>
+                    <td>❌ Facultatif</td>
+                    <td>Org, Nature, Dest, Op, Ana</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>📊 Écritures Comptables et Lettrage</h3>
+        
+        <h4>🔹 Situations Comptables Courantes</h4>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Situation</th>
+                    <th>📊 Écriture</th>
+                    <th>💬 Commentaire</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>EJ engagé sans SF</td>
+                    <td>D/ 6x &nbsp;&nbsp;&nbsp; C/ 408</td>
+                    <td>Engagement simple</td>
+                </tr>
+                <tr>
+                    <td>EJ engagé + SF certifié</td>
+                    <td>D/ 6x &nbsp;&nbsp;&nbsp; C/ 408<br>D/ xxx &nbsp;&nbsp; C/ 408 (BE)</td>
+                    <td>Avec service fait</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>🔄 Cycle de Vie des Écritures</h4>
+        
+        <div class="flow-diagram">
+            <div class="flow-item">
+                <strong>✅ Service Fait</strong><br>
+                (Constatation SF)<br>
+                D/ 6x → C/ 408
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">
+                <strong>💳 Demande Paiement</strong><br>
+                (Liquidation)<br>
+                D/ 408 → C/ 4011
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">
+                <strong>💰 Paiement</strong><br>
+                (Mandatement)<br>
+                D/ 4011 → C/ 515
+            </div>
+        </div>
+
+        <div class="alert alert-danger">
+            <p><strong>💡 Point d'attention :</strong> Il est possible d'avoir un montant de BE supérieur au SF de reprise, puis de les rapprocher (antériorité qui traîne). Mais <strong>surtout pas un montant de BE inférieur au SF de reprise</strong> !!</p>
+            <p><strong>🔑 Règle :</strong> Le 408 du SF doit être inférieur ou égal au 408 du BE</p>
+        </div>
+
+        <h2 id="recettes">💰 8. Reprise des Recettes</h2>
+
+        <h3>🎯 Stratégie 1 : Reprise Minimale des Recettes</h3>
+        
+        <div class="key-point">
+            <p><strong>🎯 Usage :</strong> Établissements OHCB avec faible niveau d'impayés</p>
+            <p><strong>📋 Principe :</strong> Encours clients intégrés au BE (D411)</p>
+            <p><strong>⚡ Avantage :</strong> Retrouver encours dans état de solde après import BE</p>
+            <p><strong>🔄 Traitement :</strong> Encaissements via DV avec lettrage manuel sur écriture BE</p>
+        </div>
+
+        <h4>📊 Schéma Comptable - Stratégie 1</h4>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>📊 Exercice précédent</th>
+                    <th>📊 Exercice de démarrage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <strong>Titre émis et non encaissé :</strong><br>
+                        D/ 411 &nbsp;&nbsp; C/ 7x
+                    </td>
+                    <td>
+                        <strong>BE importé :</strong><br>
+                        D/ xxx &nbsp;&nbsp; C/ 411<br><br>
+                        <strong>Encaissement DV :</strong><br>
+                        D/ 515 &nbsp;&nbsp; C/ 411
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🎖️ Stratégie 2 : Reprise des Titres (Recommandée)</h3>
+        
+        <div class="alert alert-success">
+            <p><strong>🎯 Usage :</strong> OCB + établissements souhaitant le suivi détaillé</p>
+            <p><strong>📋 Principe :</strong> Titres repris pour reste à encaisser</p>
+            <p><strong>⚡ Avantages :</strong> Suivi précis, relance clients, passage en douteux possible</p>
+            <p><strong>🔗 Processus :</strong> Titres rattachés au BE lors import → encaissement naturel sur exercices suivants</p>
+        </div>
+
+        <h4>📊 Schéma Comptable - Stratégie 2</h4>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>📊 Exercice de reprise</th>
+                    <th>📊 Exercice de démarrage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <strong>Titre émis et non encaissé</strong><br>
+                        <em>⇒ Repris sur l'exercice de reprise</em><br>
+                        D/ 411 &nbsp;&nbsp; C/ 7x
+                    </td>
+                    <td>
+                        <strong>BE importé (lettrage automatique) :</strong><br>
+                        D/ xxx &nbsp;&nbsp; C/ 411<br><br>
+                        <strong>Encaissement TIT :</strong><br>
+                        D/ 515 &nbsp;&nbsp; C/ 411
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>💰 Demandes de Reversement (DRV)</h3>
+        
+        <div class="alert alert-info">
+            <p><strong>🎯 Préconisation :</strong> Reprendre pour leur reste à encaisser (idem titres)</p>
+            <p><strong>💰 Principe DRV :</strong> Idem pour les DRV non soldées</p>
+            <p><strong>🔄 Traitement alternatif :</strong> Via le BE uniquement (titres à émettre)</p>
+        </div>
+
+        <h2 id="formats-outils">🔧 9. Formats et Outils de Reprise</h2>
+
+        <h3>📊 Matrice des Outils de Reprise</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Objet</th>
+                    <th>📝 Saisie Manuelle</th>
+                    <th>📊 Excel</th>
+                    <th>🔄 API/JSON</th>
+                    <th>🦸 BATMAN</th>
+                    <th>📋 Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🤝 Accords-cadres</td>
+                    <td>✅ + BPU Excel</td>
+                    <td>🔧 Macro à finaliser</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td>🔄 En développement</td>
+                </tr>
+                <tr>
+                    <td>🏗️ Marchés</td>
+                    <td>✅</td>
+                    <td>🔧 Macro à finaliser</td>
+                    <td>❌ API tranches manquante</td>
+                    <td>❌</td>
+                    <td>⚠️ Limitation tranches</td>
+                </tr>
+                <tr>
+                    <td>👥 Tiers</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                    <td>✅ Contrôle obligatoire</td>
+                    <td>✅ Opérationnel</td>
+                </tr>
+                <tr>
+                    <td>⚖️ EJ</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅ Webservice</td>
+                    <td>🔄 En cours de développement</td>
+                    <td>✅ Opérationnel</td>
+                </tr>
+                <tr>
+                    <td>✅ SF</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅ API</td>
+                    <td>❌</td>
+                    <td>✅ Opérationnel</td>
+                </tr>
+                <tr>
+                    <td>🎫 Titres</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅ API</td>
+                    <td>❌</td>
+                    <td>✅ Opérationnel</td>
+                </tr>
+                <tr>
+                    <td>🧾 DPA</td>
+                    <td>✅</td>
+                    <td>🔧 À développer</td>
+                    <td>🔧 API à créer</td>
+                    <td>❌</td>
+                    <td>🔄 En développement</td>
+                </tr>
+                <tr>
+                    <td>📊 BE</td>
+                    <td>❌</td>
+                    <td>✅ (.xls obligatoire)</td>
+                    <td>✅ API OD</td>
+                    <td>❌</td>
+                    <td>✅ Opérationnel</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🔄 Workflows et Statuts</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Objet</th>
+                    <th>📋 Workflow Initial</th>
+                    <th>🔄 Transition</th>
+                    <th>✅ Statut Final</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>⚖️ EJ</td>
+                    <td>BROUILLON</td>
+                    <td>Auto après import</td>
+                    <td>VALIDÉ</td>
+                </tr>
+                <tr>
+                    <td>✅ SF</td>
+                    <td>BROUILLON</td>
+                    <td>Auto après import</td>
+                    <td>VALIDÉ</td>
+                </tr>
+                <tr>
+                    <td>🎫 Titres</td>
+                    <td>BROUILLON</td>
+                    <td>Auto après import</td>
+                    <td>VALIDÉ</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-warning">
+            <p><strong>⚠️ Point critique :</strong> Il n'est pas possible de faire 2 pièces sur une pièce précédente au statut "Brouillon". Pour les SF, si 2 SF sont liés à un EJ, on cumule les 2 SF en 1 seul.</p>
+            <p><strong>🔄 Séquence :</strong> La transition de workflow "Brouillon" → "Validé" s'exécute après l'import.</p>
+        </div>
+
+        <h3>📋 Formats de Fichiers Détaillés</h3>
+
+        <h4>⚖️ Format EJ/SF</h4>
+        
+        <div class="key-point">
+            <p><strong>📋 Structure :</strong> Fichier Excel avec sections En-têtes / Lignes / Ventilations / SF</p>
+            <p><strong>🔑 Colonnes clés :</strong> Reference externe, Objet, Date pièce, tiers ELAP, Compte Charge, Montant TTC</p>
+            <p><strong>🔗 Liaisons :</strong> Référence externe pour lier EJ/SF, ventilations budgétaires obligatoires</p>
+        </div>
+
+        <h4>🤝 Format Accords-Cadres</h4>
+        
+        <div class="key-point">
+            <p><strong>📋 Structure :</strong> Fichier Excel multi-onglets (AccordCadre / Attributaires)</p>
+            <p><strong>🔑 Données :</strong> ReferenceAccordCadre, Etablissement, NumeroAC, Description, NatureMarche</p>
+            <p><strong>👥 Attributaires :</strong> CodeTiers, Rôle (Principal/Sous-traitant), PaiementDirect</p>
+        </div>
+
+        <h4>🏗️ Format Marchés</h4>
+        
+        <div class="alert alert-warning">
+            <p><strong>📋 Structure :</strong> Fichier Excel 5 onglets (Marché / Attributaires / Tranches / Lignes / Ventilations)</p>
+            <p><strong>⚠️ Limitation :</strong> API tranches non disponible = import manuel obligatoire</p>
+            <p><strong>🔄 Statuts tranches :</strong> Tranche Ferme / En attente / Affermie</p>
+        </div>
+
+        <h4>🎫 Format Titres</h4>
+        
+        <div class="key-point">
+            <p><strong>📋 Structure :</strong> Fichier Excel complexe avec ventilations et services faits optionnels</p>
+            <p><strong>🔑 Spécificités :</strong> Support JSON natif, gestion des prix unitaires, codes TVA</p>
+            <p><strong>💰 Calculs :</strong> Montants HT/TTC automatiques, reste à encaisser</p>
+        </div>
+
+        <h2 id="bonnes-pratiques">🧹 10. Bonnes Pratiques d'Épuration</h2>
+        
+        <div class="alert alert-success">
+            <p><strong>🎯 Principe fondamental :</strong> L'épuration préalable permet de réduire considérablement les volumes de reprise et de démarrer sur une base saine.</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🎯 Action</th>
+                    <th>📝 Description</th>
+                    <th>💡 Avantage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🔒 Solder EJ</td>
+                    <td>Finaliser engagements qui ne seront jamais finalisés</td>
+                    <td>↓ Volume reprise</td>
+                </tr>
+                <tr>
+                    <td>❌ Annuler SF</td>
+                    <td>Supprimer services qui ne seront jamais liquidés</td>
+                    <td>🧹 Base propre</td>
+                </tr>
+                <tr>
+                    <td>💳 Payer DP</td>
+                    <td>Liquider toutes les DP prises en charge</td>
+                    <td>↓ Complexité</td>
+                </tr>
+                <tr>
+                    <td>🔗 Lettrer titres</td>
+                    <td>Associer aux encaissements</td>
+                    <td>✅ Cohérence</td>
+                </tr>
+                <tr>
+                    <td>🏗️ Clôturer marchés</td>
+                    <td>Profiter de la reprise pour clôturer</td>
+                    <td>🧹 Épuration</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-info">
+            <strong>💡 Conseil pratique :</strong> Mieux vaut épurer au maximum pour démarrer sereinement que de reprendre des volumes importants de données obsolètes.
+        </div>
+
+        <h2 id="controles">🔍 11. Plan de Contrôles</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🔍 Contrôle</th>
+                    <th>📝 Description</th>
+                    <th>🎯 Objectif</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>⚖️ Équilibres</td>
+                    <td>Vérification comptable des totaux</td>
+                    <td>Cohérence</td>
+                </tr>
+                <tr>
+                    <td>📊 États AE/CP</td>
+                    <td>Consommations budgétaires</td>
+                    <td>Conformité GBCP</td>
+                </tr>
+                <tr>
+                    <td>🔗 Lettrages</td>
+                    <td>Héritage automatique des lettrages</td>
+                    <td>Pluriannualité</td>
+                </tr>
+                <tr>
+                    <td>🧪 Tests fonctionnels</td>
+                    <td>Échantillon représentatif selon contexte</td>
+                    <td>Qualité</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🎯 Axes d'Amélioration Prioritaires</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>📋 Domaine</th>
+                    <th>🔧 Amélioration</th>
+                    <th>📊 Priorité</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>📊 Formats pivot</td>
+                    <td>Standardisation et enrichissement des templates</td>
+                    <td>🔴 Haute</td>
+                </tr>
+                <tr>
+                    <td>🔄 APIs</td>
+                    <td>Développement API tranches de marchés</td>
+                    <td>🟡 Moyenne</td>
+                </tr>
+                <tr>
+                    <td>🦸 BATMAN</td>
+                    <td>Extension contrôles EJ et autres objets</td>
+                    <td>🔴 Haute</td>
+                </tr>
+                <tr>
+                    <td>📈 Performance</td>
+                    <td>Accélération imports (tiers, plan comptable)</td>
+                    <td>🟡 Moyenne</td>
+                </tr>
+                <tr>
+                    <td>🧾 DPA</td>
+                    <td>Création API et formats standardisés</td>
+                    <td>🟢 Faible</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="anomalies">🚨 12. Gestion des Anomalies</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>🚨 Signal d'Alerte</th>
+                    <th>📝 Description</th>
+                    <th>🔧 Action Corrective</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>📏 BE > 4000 lignes</td>
+                    <td>Volume trop important pour l'outil standard</td>
+                    <td>Solliciter équipe technique spécialisée</td>
+                </tr>
+                <tr>
+                    <td>❌ Erreurs BATMAN</td>
+                    <td>Problèmes format/cohérence</td>
+                    <td>Corriger avant tentative import</td>
+                </tr>
+                <tr>
+                    <td>⏰ Retards planning</td>
+                    <td>Dérive calendaire</td>
+                    <td>Reprioriser/Escalader</td>
+                </tr>
+                <tr>
+                    <td>💰 Incohérences 408</td>
+                    <td>BE < SF reprise</td>
+                    <td>Vérifier correspondances</td>
+                </tr>
+                <tr>
+                    <td>🚫 API tranches</td>
+                    <td>Limitation technique actuelle</td>
+                    <td>Import manuel obligatoire</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-danger">
+            <strong>🚨 En cas de blocage majeur :</strong> Escalader immédiatement vers l'équipe technique et documenter précisément le contexte d'erreur.
+        </div>
+
+        <h2 id="lexique">📖 13. Lexique et Abréviations</h2>
+
+        <h3>🔤 Abréviations Principales</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Abréviation</th>
+                    <th>📝 Terme Complet</th>
+                    <th>🔍 Définition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>AC</strong></td>
+                    <td>Accord-Cadre</td>
+                    <td>Contrat public permettant de sélectionner fournisseurs pour commandes ultérieures</td>
+                </tr>
+                <tr>
+                    <td><strong>AE</strong></td>
+                    <td>Autorisations d'Engagement</td>
+                    <td>Limite supérieure des dépenses pouvant être engagées juridiquement au cours de l'exercice</td>
+                </tr>
+                <tr>
+                    <td><strong>BE</strong></td>
+                    <td>Bilan d'Entrée (ou Balance d'Entrée)</td>
+                    <td>Reprise des soldes comptables de l'ancien système vers ELAP Finance</td>
+                </tr>
+                <tr>
+                    <td><strong>CP</strong></td>
+                    <td>Crédits de Paiement</td>
+                    <td>Limite supérieure des dépenses pouvant être payées pendant l'exercice</td>
+                </tr>
+                <tr>
+                    <td><strong>DP</strong></td>
+                    <td>Demande de Paiement</td>
+                    <td>Acte administratif pour demander au comptable public de procéder au paiement d'une dépense</td>
+                </tr>
+                <tr>
+                    <td><strong>DPA</strong></td>
+                    <td>Demande de Paiement d'Avance</td>
+                    <td>Document pour ordonner le versement anticipé d'une somme à un fournisseur</td>
+                </tr>
+                <tr>
+                    <td><strong>DRV</strong></td>
+                    <td>Demande de Reversement</td>
+                    <td>Document pour ordonner le reversement d'une somme indûment perçue</td>
+                </tr>
+                <tr>
+                    <td><strong>DV</strong></td>
+                    <td>Demande de Virement</td>
+                    <td>Document permettant le versement d'une subvention ou d'une dotation</td>
+                </tr>
+                <tr>
+                    <td><strong>EJ</strong></td>
+                    <td>Engagement Juridique</td>
+                    <td>Acte créant une obligation légale ou contractuelle envers un tiers</td>
+                </tr>
+                <tr>
+                    <td><strong>GBCP</strong></td>
+                    <td>Gestion Budgétaire et Comptable Publique</td>
+                    <td>Cadre réglementaire de la comptabilité publique (décret n°2012-1246)</td>
+                </tr>
+                <tr>
+                    <td><strong>MCAP</strong></td>
+                    <td>Mandat de Charge à Payer</td>
+                    <td>Mandat émis pour comptabiliser une charge avant réception de facture</td>
+                </tr>
+                <tr>
+                    <td><strong>OCB</strong></td>
+                    <td>Organisme soumis au Contrôle Budgétaire</td>
+                    <td>Établissement avec contrôle a priori des dépenses par le comptable public</td>
+                </tr>
+                <tr>
+                    <td><strong>OHCB</strong></td>
+                    <td>Organisme Hors Contrôle Budgétaire</td>
+                    <td>Établissement sans contrôle a priori, contrôle a posteriori uniquement</td>
+                </tr>
+                <tr>
+                    <td><strong>RDD</strong></td>
+                    <td>Reprise De Données</td>
+                    <td>Processus de migration des données de l'ancien vers le nouveau système</td>
+                </tr>
+                <tr>
+                    <td><strong>SF</strong></td>
+                    <td>Service Fait</td>
+                    <td>Constatation de la réalisation d'une prestation ou livraison d'un bien</td>
+                </tr>
+                <tr>
+                    <td><strong>TIT</strong></td>
+                    <td>Titre de recette</td>
+                    <td>Document émis pour constater une créance et ordonner son recouvrement</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>📚 Glossaire Technique</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>🏷️ Terme</th>
+                    <th>📝 Définition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>CAPAC</strong></td>
+                    <td>Charge à Payer Avec Commande - Mécanisme comptable permettant de constater une charge avant réception de la facture, nécessitant une extourne au 1er janvier</td>
+                </tr>
+                <tr>
+                    <td><strong>DP directe</strong></td>
+                    <td>Demande de Paiement non rattachée à un engagement juridique, consommant directement la charge budgétaire</td>
+                </tr>
+                <tr>
+                    <td><strong>Exercice de reprise</strong></td>
+                    <td>Exercice technique (N-1) créé spécifiquement pour accueillir les données de l'ancien système, sans budget ni contrôles</td>
+                </tr>
+                <tr>
+                    <td><strong>Format pivot</strong></td>
+                    <td>Format standardisé ELAP permettant l'import des données, obtenu par transformation du format source client</td>
+                </tr>
+                <tr>
+                    <td><strong>Format source</strong></td>
+                    <td>Format initial des données client, dépendant de leur système d'origine, nécessitant transformation</td>
+                </tr>
+                <tr>
+                    <td><strong>Lettrage</strong></td>
+                    <td>Association comptable entre écritures (ex: SF et paiement) permettant le suivi et l'équilibrage</td>
+                </tr>
+                <tr>
+                    <td><strong>Pluriannualité</strong></td>
+                    <td>Capacité des objets de gestion à être utilisés sur plusieurs exercices (DP 2026 sur SF 2025)</td>
+                </tr>
+                <tr>
+                    <td><strong>Reste à certifier</strong></td>
+                    <td>Montant d'un engagement non encore constaté par un service fait (EJ - SF)</td>
+                </tr>
+                <tr>
+                    <td><strong>Reste à liquider</strong></td>
+                    <td>Montant d'un engagement non encore payé (EJ - DP ou SF - DP)</td>
+                </tr>
+                <tr>
+                    <td><strong>Tranche conditionnelle</strong></td>
+                    <td>Partie optionnelle d'un marché, activable selon décision et budget disponible</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-info">
+            <p><strong>📄 Version du guide :</strong> Guide RDD ELAP Finance M4/M57 - Août 2025</p>
+            <p><strong>🎯 Audience :</strong> Chefs de projet ELAP Finance</p>
+            <p><strong>⚙️ Conformité :</strong> GBCP, nomenclatures M4/M57, standards ELAP Finance</p>
+            <p><strong>🔄 Dernière mise à jour :</strong> Enrichissement avec retours d'expérience projets 2025</p>
+        </div>
+    </div>
+</body>
+</html>
