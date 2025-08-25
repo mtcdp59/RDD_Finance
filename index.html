@@ -223,6 +223,7 @@
                 <li>🔍 <a href="#controles">11. Plan de Contrôles</a></li>
                 <li>🚨 <a href="#anomalies">12. Gestion des Anomalies</a></li>
                 <li>📖 <a href="#lexique">13. Lexique et Abréviations</a></li>
+                <li>🛠️ <a href="#ressources">14. Ressources et Support</a></li>
             </ul>
         </div>
 
@@ -1084,7 +1085,7 @@
                     <td>A</td>
                     <td>Compte</td>
                     <td>✅ Obligatoire</td>
-                    <td>Nomenclature M9 ELAP</td>
+                    <td>Nomenclature du client (M4 / M9 (OCB/OHCB) / M57)</td>
                 </tr>
                 <tr>
                     <td>B</td>
@@ -1126,7 +1127,7 @@
                     <td>H</td>
                     <td>N° Pièce Origine</td>
                     <td>❌ Facultatif</td>
-                    <td>Correspondance SF/TIT</td>
+                    <td>Si possible en correspondance avec les numéros de SF/TIT repris dans ELAP</td>
                 </tr>
                 <tr>
                     <td>I-M</td>
@@ -1387,7 +1388,7 @@
 
         <div class="alert alert-warning">
             <p><strong>⚠️ Point critique :</strong> Il n'est pas possible de faire 2 pièces sur une pièce précédente au statut "Brouillon". Pour les SF, si 2 SF sont liés à un EJ, on cumule les 2 SF en 1 seul.</p>
-            <p><strong>🔄 Séquence :</strong> La transition de workflow "Brouillon" → "Validé" s'exécute après l'import.</p>
+            <p><strong>🔄 Séquence :</strong> La transition de workflow "Brouillon" → "Validé" s'exécute après l'import, via la balise JSON "wfTransition" (si renseignée).</p>
         </div>
 
         <h3>📋 Formats de Fichiers Détaillés</h3>
@@ -1583,10 +1584,33 @@
             </tbody>
         </table>
 
-        <div class="alert alert-danger">
+		
+		<h3>🔧 Procédures d'Escalade</h3>
+		 <div class="alert alert-danger">
             <strong>🚨 En cas de blocage majeur :</strong> Escalader immédiatement vers l'équipe technique et documenter précisément le contexte d'erreur.
         </div>
-
+        <div class="warning">
+            <h4>⚠️ Niveau 1 - Équipe projet :</h4>
+            <ul>
+                <li>Erreurs de format corrigeables</li>
+                <li>Problèmes de cohérence mineurs</li>
+                <li>Retards < 3 jours</li>
+            </ul>
+            
+            <h4>🚨 Niveau 2 - Support technique ELAP :</h4>
+            <ul>
+                <li>BE > 4000 lignes</li>
+                <li>Problèmes API/Webservices</li>
+                <li>Blocages techniques majeurs</li>
+            </ul>
+            
+            <h4>🔥 Niveau 3 - Direction projet :</h4>
+            <ul>
+                <li>Retards > 1 semaine</li>
+                <li>Remise en cause stratégie</li>
+                <li>Problèmes de ressources</li>
+            </ul>
+        </div>
         <h2 id="lexique">📖 13. Lexique et Abréviations</h2>
 
         <h3>🔤 Abréviations Principales</h3>
@@ -1677,7 +1701,7 @@
                 </tr>
                 <tr>
                     <td><strong>TIT</strong></td>
-                    <td>Titre de recette</td>
+                    <td>Titre de Recette</td>
                     <td>Document émis pour constater une créance et ordonner son recouvrement</td>
                 </tr>
             </tbody>
@@ -1735,12 +1759,67 @@
                 </tr>
             </tbody>
         </table>
+		
+		        <h2 id="ressources">🛠️ 14. Ressources et Support</h2>
+
+        <table>
+            <thead>
+                <tr><th>🛠️ Ressource</th><th>📝 Description</th><th>📍 Accès/Contact</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>🦸 BATMAN</td><td>Contrôle qualité fichiers</td><td>Application dédiée</td></tr>
+                <tr><td>📊 Templates Excel</td><td>Formats d'import standardisés</td><td>Kit Finance ELAP</td></tr>
+                <tr><td>🔄 API Documentation</td><td>Webservices EJ/SF/Titres</td><td>Documentation technique</td></tr>
+                <tr><td>👥 Support Technique</td><td>BE > 4000 lignes, problèmes complexes</td><td>Équipe technique ELAP</td></tr>
+                <tr><td>📋 Formats de fichiers</td><td>Structures détaillées par objet</td><td>Kit de spécifications</td></tr>
+            </tbody>
+        </table>
+		
+		</table>
+		
+        <h3>👥 Rôles et Responsabilités</h3>
+
+        <table>
+            <thead>
+                <tr><th>👤 Rôle</th><th>🏢 Origine</th><th>📋 Responsabilités</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>📊 Ordonnateur</td><td>Établissement</td><td>Reprise des données existantes avec préparation</td></tr>
+                <tr><td>💰 Comptable</td><td>Établissement</td><td>Validation comptable, contrôles réglementaires</td></tr>
+                <tr><td>🔧 Technique ELAP</td><td>ELAP</td><td>Intégration données préparées, support technique</td></tr>
+                <tr><td>🎯 Chefs de projet</td><td>ELAP/Établissement</td><td>Coordination, planning, validation globale</td></tr>
+            </tbody>
+        </table>
+
+        <div class="success">
+            <h3>🎯 Points Clés de Réussite</h3>
+            <ul>
+                <li><strong>📋 Préparation rigoureuse :</strong> Épurer au maximum avant la reprise</li>
+                <li><strong>🔧 Stratégie adaptée :</strong> Choisir selon le type d'établissement (OCB/OHCB)</li>
+                <li><strong>⏰ Planning respecté :</strong> Suivre l'ordre des étapes et les dépendances</li>
+                <li><strong>🔍 Contrôles systématiques :</strong> Utiliser BATMAN pour valider la qualité</li>
+                <li><strong>🤝 Collaboration active :</strong> Impliquer ordonnateur et comptable</li>
+                <li><strong>📊 Suivi post-import :</strong> Vérifier équilibres et cohérence</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <h3>📞 Contacts d'Urgence</h3>
+            <p><strong>🚨 En cas de blocage majeur :</strong></p>
+            <ul>
+                <li><strong>Support technique ELAP :</strong> Pour BE > 4000 lignes</li>
+                <li><strong>Équipe projet :</strong> Pour problèmes de planning</li>
+                <li><strong>BATMAN :</strong> Pour erreurs de format persistantes</li>
+            </ul>
+        </div>
+
+        <hr style="margin: 40px 0; border: 1px solid #0066cc;">
 
         <div class="alert alert-info">
             <p><strong>📄 Version du guide :</strong> Guide RDD ELAP Finance M4/M57 - Août 2025</p>
             <p><strong>🎯 Audience :</strong> Chefs de projet ELAP Finance</p>
             <p><strong>⚙️ Conformité :</strong> GBCP, nomenclatures M4/M57, standards ELAP Finance</p>
-            <p><strong>🔄 Dernière mise à jour :</strong> Enrichissement avec retours d'expérience projets 2025</p>
+            <p><strong>🔄 Dernière mise à jour :</strong> 25/08/2025</p>
         </div>
     </div>
 </body>
